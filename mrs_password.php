@@ -6,7 +6,7 @@ use std, gui, framework, app;
 class mrs_password 
 {
     var $pass;
-    public function Mrs_password_show($title,$txt)
+    public function Mrs_password_show($title,$txt,$Animation_show)
     {
         //Mrs_alert
         $form = new UXForm();
@@ -57,7 +57,7 @@ class mrs_password
         $ShadowMove->apply($move);//Add move
         //shadow(Text)
         $ShadowText = new DropShadowEffectBehaviour();
-        //$ShadowText->apply($text);//Add move
+        $ShadowText->apply($text);//Add move
         //moveEffect
         $move_ = new DraggingFormBehaviour();
         $move_->opacityEnabled = true;

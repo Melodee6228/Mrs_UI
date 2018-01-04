@@ -5,7 +5,7 @@ use std, gui, framework, app;
 
 class mrs_alert
 {
-    public function Mrs_alert_show($title,$txt)
+    public function Mrs_alert_show($title,$txt,$Animation_show)
     {
         //Mrs_alert
         $form = new UXForm();
@@ -65,6 +65,12 @@ class mrs_alert
         $form->add($buttonApply);
         $form->add($text);
         //showing
+        if($Animation_show == true)
+        {
+            $time = 2000;
+            $form->opacity = 0; // делаем её прозрачной
+            Animation::fadeIn($form, $time);
+        }
         $form->showAndWait();
     }
 }

@@ -6,6 +6,7 @@ use std, gui, framework, app;
 class mrs_password 
 {
     var $pass;
+    var $isKeyLose;
     public function Mrs_password_show($title,$txt,$Animation_show)
     {
         //Mrs_alert
@@ -52,16 +53,17 @@ class mrs_password
         //shadow(background)
         $Shadow = new DropShadowEffectBehaviour();
         $Shadow->apply($background);//Add background
-        //shadow(move)
-        $ShadowMove = new DropShadowEffectBehaviour();
-        $ShadowMove->apply($move);//Add move
-        //shadow(Text)
-        $ShadowText = new DropShadowEffectBehaviour();
-        $ShadowText->apply($text);//Add move
         //moveEffect
         $move_ = new DraggingFormBehaviour();
         $move_->opacityEnabled = true;
         $move_->apply($move);
+        //ограничение символов -> !
+        if($this->isKeyLose)//Iskeylose :)
+        {
+            $keylose = new KeyInputRuleBehaviour();
+            $keylose->allowedSymbols = '1234567890_-zaqxswcdevfrbgtnhymjukilopяфйчыцсвумакипетрньогблшюдщжзэхъ';//Типо какие символы возможно использовать )
+            $keylose->apply($password);//ApLyA
+        }
         //Event
         $buttonApply->on('click', function () use ($form,$password) 
         {
@@ -86,10 +88,10 @@ class mrs_password
         //showing
         if($Animation_show == true)
         {
-            $time = 2000;
+            $time = 2000;//use time add
             $form->opacity = 0; // делаем её прозрачной
             Animation::fadeIn($form, $time);
         }
-        $form->showAndWait();
+        $form->showAndWait();//Create Форм типа создать форму ))0
     }
 }
